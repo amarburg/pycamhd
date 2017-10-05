@@ -10,6 +10,13 @@ filesystem.
 
 .. _raw data archive: https://rawdata.oceanobservatories.org/files/RS03ASHS/PN03B/06-CAMHDA301/
 
+
+Relative to Tim's `upstream repo`_, I've created a two-tier namespace to allow
+running this package and `pycamhd-lazycache` in parallel.
+
+.. _upstream repo: https://github.com/tjcrone/pycamhd
+.. _pycamhd-lazycache: https://github.com/CamHD-Analysis/pycamhd-lazycache
+
 ************
 Requirements
 ************
