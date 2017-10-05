@@ -26,5 +26,5 @@ setup(name='pycamhd-native',
       author='Timothy Crone',
       author_email='tjcrone@gmail.com',
       license='MIT',
-      install_requires=['av'],
+      install_requires=['av>0.3.3'],
       packages=['pycamhd.native'])

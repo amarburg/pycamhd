@@ -166,10 +166,7 @@ def get_frame(filename, frame_number, pix_fmt='rgb24', moov_atom=False):
   else:
     container = av.open(filename)
     pts = int(frame_number*33366)
-
-    # In pyav 0.3.3, as installed automatically by pip, it's called "mode"
-    # in HEAD it's "whence"
-    container.seek(pts, mode='frame', backward=False)
+    container.seek(pts, whence='frame', backward=False)
     packet = next(container.demux())
     frame = packet.decode_one().reformat(format=pix_fmt)
 
