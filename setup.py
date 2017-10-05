@@ -16,9 +16,9 @@ def find_version(*file_paths):
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
 
-version = find_version('pycamhd', '__init__.py')
+version = find_version('pycamhd', 'native', '__init__.py')
 
-setup(name='pycamhd',
+setup(name='pycamhd-native',
       version=version,
       description='Module for interacting with OOI CamHD video data',
       long_description='README.rst',
@@ -26,4 +26,5 @@ setup(name='pycamhd',
       author='Timothy Crone',
       author_email='tjcrone@gmail.com',
       license='MIT',
-      packages=['pycamhd'])
+      install_requires=['av'],
+      packages=['pycamhd.native'])

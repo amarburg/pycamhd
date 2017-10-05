@@ -12,6 +12,7 @@ import subprocess, struct, sys, requests, av
 from datetime import date, timedelta
 import numpy as np
 
+
 # get arbitrary bytes from remote or local file
 def get_bytes(filename, byte_range):
   if "https://" in filename:
@@ -165,7 +166,10 @@ def get_frame(filename, frame_number, pix_fmt='rgb24', moov_atom=False):
   else:
     container = av.open(filename)
     pts = int(frame_number*33366)
-    container.seek(pts, whence='frame', backward=False)
+
+    # In pyav 0.3.3, as installed automatically by pip, it's called "mode"
+    # in HEAD it's "whence"
+    container.seek(pts, mode='frame', backward=False)
     packet = next(container.demux())
     frame = packet.decode_one().reformat(format=pix_fmt)
 
@@ -297,7 +301,7 @@ def main():
   #print ftyp_size
   #print mdat_size
   #print moov_size
-  
+
   # get moov atom
   #moov_atom = get_moov_atom(filename)
   #print len(moov_atom)
@@ -402,8 +406,8 @@ def main():
     #print framemd5
   #return file_bytes
 
-  # convert to yuv rawvideo 
-  #  cmd = ('curl --header "Range: bytes=%i-%i" -k -s ' % 
+  # convert to yuv rawvideo
+  #  cmd = ('curl --header "Range: bytes=%i-%i" -k -s ' %
   #    (byte_range[0], byte_range[1])) + filename
   #  p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
 
